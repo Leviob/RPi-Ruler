@@ -64,6 +64,7 @@ GPIO.add_event_detect(25, GPIO.FALLING, callback=button_callback)
 while True:
     cur_coords = np.array([gps_log[-1][1], gps_log[-1][2]])
     distance = (measure_distance(zero_coords, cur_coords))
+    # Displays distance in meters and cm with padding.
     display.lcd_display_string(
-        f'{int(distance)} m {int(distance % 1 * 100)} cm        ', 1)
+        f'{str(int(distance)).rjust(4, " ")} m {str(int(distance % 1 * 100)).rjust(2, " ")} cm        ', 1)
     sleep(.5)
